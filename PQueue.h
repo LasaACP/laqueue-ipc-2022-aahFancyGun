@@ -10,6 +10,7 @@
  * 
  * */
 
+
 struct node
 {
 	int priority;
@@ -28,7 +29,7 @@ class PQueue
 	public:
 	PQueue()
 	{
-		front = NULL;
+		front = nullptr;
 	}
 		
 	void push(void *item, int priority);
