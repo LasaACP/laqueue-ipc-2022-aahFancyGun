@@ -25,25 +25,26 @@ using namespace std;
  * Insert into Priority Queue
  */
 void PQueue::push(void *item, int priority) {
-  node *newNode = n n;(node*)malloc(sizeof(node));
-  newNode -> data = item;
-  newNode -> priority = priority;
-  newNode -> link = NULL;
-  if (front == NULL){
+  node *newNode = new node;
+  newNode->data = item;
+  newNode->priority = priority;
+  newNode->link = NULL;
+
+  if (front == NULL) {
     front = newNode;
     return;
   }
-  if(front -> priority > priority) {
-    newNode -> link = front;
+  if (front->priority > priority) {
+    newNode->link = front;
     front = newNode;
     return;
   }
-  n temp =n n;
+  node *temp = new node;
   temp = front;
-  while(temp -> link != NULL && temp -> link -> priority <= priority){
-    temp = temp -> link;
+  while (temp->link != NULL && temp->link->priority <= priority) {
+    temp = temp->link;
   }
-  newNode -> link = temp -> link;
+  newNode -> link = temp-> link;
   temp -> link = newNode;
 }
 
