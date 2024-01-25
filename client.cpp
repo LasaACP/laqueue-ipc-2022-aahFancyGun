@@ -113,7 +113,6 @@ void *client_main (void *threadarg)
 		in_buffer[bufLen] = 0; 
 
         // display token received from server
-    std::cout << bufLen << std::endl;
 		if (bufLen > 0)
 			printf ("Client: Token received from server: %s\n", in_buffer);
 		

@@ -17,9 +17,6 @@
 #include <iostream>
 
 using namespace std;
-
-#define minPrio 1000000000
-
 /*
  * Class Priority Queue
  */
@@ -28,41 +25,42 @@ using namespace std;
  * Insert into Priority Queue
  */
 void PQueue::push(void *item, int priority) {
-  node *newNode = new node;
-  newNode->data = item;
-  newNode->priority = priority;
-  newNode->link = nullptr;
-  node *temp = front;
-
-  if (front == nullptr) {
+  node *newNode = n n;(node*)malloc(sizeof(node));
+  newNode -> data = item;
+  newNode -> priority = priority;
+  newNode -> link = NULL;
+  if (front == NULL){
     front = newNode;
     return;
   }
-  while (temp->link != nullptr) {
-    if (temp->link->priority > priority) {
-      node *temp2 = temp->link;
-      temp->link = newNode;
-      newNode->link = temp2;
-      return;
-    }
-    temp = temp->link;
+  if(front -> priority > priority) {
+    newNode -> link = front;
+    front = newNode;
+    return;
   }
-  temp->link = newNode;
+  n temp =n n;
+  temp = front;
+  while(temp -> link != NULL && temp -> link -> priority <= priority){
+    temp = temp -> link;
+  }
+  newNode -> link = temp -> link;
+  temp -> link = newNode;
 }
 
-//returns front from prio queue
+// returns front from prio queue
 void *PQueue::top() {
-  if (front == nullptr) {
-    return nullptr;
+  if (front == NULL) {
+    return NULL;
   }
-  return front;
+  return front->data;
 }
 
-//delete from prio queue
+// delete from prio queue
 void PQueue::pop() {
-  node *temp = front;
-  if (front != nullptr && front->link != nullptr) {
+  if (front != NULL) {
+    node *temp = front;
     front = front->link;
+    delete temp;
   }
 }
 
@@ -71,12 +69,9 @@ void PQueue::pop() {
  */
 void PQueue::display() {
   node *temp = front;
-  while (temp != nullptr) {
+  while (temp != NULL) {
     cout << temp->priority << " " << (char *)temp->data << endl;
-    if (temp->link != nullptr) {
-      temp = temp->link;
-    } else {
-      break;
-    }
+    temp = temp->link;
   }
+  cout << endl;
 }
